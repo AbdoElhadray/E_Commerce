@@ -1,0 +1,45 @@
+<section class="brands w-75  rounded-2 mx-auto my-3">
+  <div class="container">
+    <h1 class="fs-1 fw-bold text-main text-center p-2">All Brands</h1>
+    <div class="row ">
+      @for (brand of BarndData; track brand._id) {
+      <div class="col-md-3 col-sm-6  p-2">
+        <div (click)="click($event)" class="category border rounded-3" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          <div class="p-2 cursor-pointer rounded-2">
+            <div class="product-img">
+              <img [attr.data-id]="brand._id" class="w-100 rounded" height="200" [src]="brand.image"
+                [alt]="brand.name" />
+            </div>
+            <div class="caption p-2">
+              <p [attr.data-id]="brand._id" class="text-main fw-bold text-center">{{ brand.name }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      }
+    </div>
+    <div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                {{ BrandDetails.name }}
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img class="img-fluid" [src]="BrandDetails.image" [alt]="BrandDetails.name" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

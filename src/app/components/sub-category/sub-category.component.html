@@ -1,0 +1,45 @@
+<section class="products my-3">
+    <div class="container">
+        <div class="row">
+            @for (product of productData; track product._id) {
+            <div class="col-md-2 col-sm-6 p-2">
+                <div class="product">
+                    <div class=" p-2 cursor-pointer rounded-2">
+                        <div [routerLink]="['/productDetails', product.id]">
+                            <div class="product-img">
+                                <img [src]="product.imageCover" class="w-100 rounded" [alt]="product.title">
+                            </div>
+                            <div class="product-caotion">
+                                <h2 class="fs-6 text-main">{{product.category.name}}</h2>
+                                <h1 class="fs-6 fw-bold">{{product.title.split(' ').slice(0,2).join(' ')}}</h1>
+                                <div class="d-flex justify-content-between align-content-center">
+                                    <span>{{product.price}} EGP</span>
+                                    <div class="small">
+                                        @for (star of [1,2,3,4,5].slice(0,product.ratingsAverage); track $index) {
+                                        <span><i class="fa-solid fa-star rating-color"></i></span>
+                                        }
+                                        @if (product.ratingsAverage%1 !=0) {<i
+                                            class="fa-solid fa-star-half-stroke rating-color"></i>}
+                                        <span>{{product.ratingsAverage}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="me-auto mx-2 d-flex justify-content-end align-items-end my-0">
+                            <span  class="heart fs-4">
+                                <i (click)="addFav(product._id)" class="fa-regular text-danger fa-heart heart"></i>
+                            </span>
+                            <span  class="heart fs-4">
+                                <i (click)="removeFav(product._id)" class="fa-solid text-danger fa-heart heart"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <button (click)="addCartItem(product.id)" class="btn-main w-100">Add to Cart +</button>
+                </div>
+            </div>
+
+            }
+        </div>
+    </div>
+</section>

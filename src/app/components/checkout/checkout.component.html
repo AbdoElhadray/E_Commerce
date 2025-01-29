@@ -1,0 +1,25 @@
+<section class="bg-main-light p-3 w-75 shadow rounded-2 mx-auto my-3">
+    <h1 class="text-main fs-1 fw-bold my-2">shipping Address</h1>
+    <div class="container">
+
+        <form [formGroup]="shippingAddress" (ngSubmit)="payOrder()">
+
+            <div class="my-3">
+                <label for="details">details</label>
+                <textarea formControlName="details" class="form-control p-2" id="details"></textarea>
+            </div>
+            <div class="my-3">
+                <label for="phone">phone</label>
+                <input formControlName="phone" type="tel" class="form-control p-2" id="phone">
+            </div>
+            <div class="my-3">
+                <label for="city">city</label>
+                <input formControlName="city" type="text" class="form-control p-2" id="city">
+            </div>
+
+            <button class="btn-main w-50 d-block mx-auto my-3">Payment</button>
+        </form>
+    </div>
+
+
+</section>
