@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "app": {
+    "E-Commerce": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -11,27 +11,36 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/app",
+            "outputPath": "dist/fresh-cart",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "node_modules/ngx-spinner/animations/ball-zig-zag-deflect.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+           "styles": [
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "node_modules/ngx-spinner/animations/ball-spin.css" , 
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+                        "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+            ],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -50,12 +59,9 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -64,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "buildTarget": "freshCart:build:production"
             },
             "development": {
-              "browserTarget": "app:build:development"
+              "buildTarget": "freshCart:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,16 +81,24 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app:build"
+            "buildTarget": "freshCart:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           }
         }
@@ -92,6 +106,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "4ec9f4c1-8a92-4221-8e9d-e2b1d5881c78"
   }
 }
