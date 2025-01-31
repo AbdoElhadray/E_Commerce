@@ -30,7 +30,7 @@ export const routes: Routes =[
         {path:'brands',component:BrandsComponent,title:'Brands'},
         {path:'cart',component:CartComponent,title:'Cart'},
         {path:'wishlist',component:WishlistComponent,title:'WishList'},
-        {path:'product-details/:id',component:ProductDetailsComponent,title:'ProductDetails'},
+        {path:'productDetails/:id',component:ProductDetailsComponent,title:'ProductDetails'},
         {path:'checkout/:id',component:CheckoutComponent,title:'CheckOut'},
         {path:'allorders',component:AllordersComponent,title:'All Orders'},
     ]},

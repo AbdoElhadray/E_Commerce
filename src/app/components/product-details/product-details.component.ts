@@ -18,14 +18,14 @@ export class ProductDetailsComponent implements OnInit {
   private readonly _CartService=inject(CartService);
 
 
-  productId !:string | null; 
-  productDetails:Iproduct |null =null;
-  productDetailsOptions: OwlOptions = {
+  productId!:any;
+  productDetails:Iproduct| null=null;
+  productSlider: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    touchDrag: true,
     autoplay:true,
-    autoplayTimeout: 2000,
+    autoplayTimeout:2000,
+    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
@@ -35,44 +35,51 @@ export class ProductDetailsComponent implements OnInit {
         items: 1
       },
       400: {
-        items: 3
+        items: 2
       },
       740: {
-        items: 4
+        items: 3
       },
       940: {
-        items: 5
+        items: 4
       },
-      1100: {
-        items: 6
+      1100:{
+        items:5
       }
     },
-    nav: false
+    nav: true
   }
-  
-  addCartItem(p_id:string){
-    this._CartService.addItemToCart(p_id).subscribe({
-      next:(res)=>{console.log(res)},
-/*       error:(err)=>{console.log(err)}
- */    })
-  }
-  ngOnInit(): void {
-    this._ActivatedRoute.paramMap.subscribe({
-      next:(pInfo)=>{
-        console.log(pInfo.get('p_id'));
-        this.productId =pInfo.get('p_id')
-      }
-    })
-    this._ProductsService.getProductDetails(this.productId).subscribe({
-      next:(res)=>{ 
-        this.productDetails= res.data
-        console.log(this.productDetails)
-      }/* ,
-      error:(err)=>{ console.log(err)} */
+ngOnInit(){
+  this._ActivatedRoute.paramMap.subscribe({
+    next:(params)=>{
+      this.productId=params.get('id');
+      console.log(this.productId);
     }
-  )
+  });
+  
 
-
-  }
+  this._ProductsService.getProductDetails(this.productId).subscribe({
+    next:(res)=>{
+      console.log(res.data);
+      this.productDetails=res.data
+    },error:(err)=>{
+      console.log(err)
+    }
+})
+ 
+};
+addToCart(id:any){
+  this._CartService.addItemToCart(id).subscribe({
+    next:(res)=>{
+      console.log(res);
+      this._CartService.cartCount.next(res.numOfCartItems)
+    },error:(err)=>{
+      console.log(err)
+    },complete:()=>{
+      
+    }
+  })
+  console.log('add to cart clicked');
+}
 
 }

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row d-flex align-items-center">
                 <div class="col-12 col-md-3 p-2">
-                    <owl-carousel-o [options]="productDetailsOptions">
+                    <owl-carousel-o [options]="productSlider">
                         @for (image of productDetails.images; track $index ) {
                         <ng-template carouselSlide>
                             <img [src]="image" class="w-100" >
@@ -27,7 +27,7 @@
                                 <span>{{productDetails.ratingsAverage}}</span>
                             </div>
                         </div>
-                        <button (click)="addCartItem(productDetails.id)"  class="btn-main w-100">Add to Cart +</button>
+                        <button (click)="addToCart(productDetails.id)"  class="btn-main w-100">Add to Cart +</button>
                     </div>
                 </div>
             </div>
